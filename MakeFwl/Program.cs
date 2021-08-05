@@ -20,7 +20,7 @@ namespace MakeFwl
 {
     internal class Program
     {
-        // Current version numbers can be found in Version.Version() in assembly_valheim
+        // Current version numbers can be found in Version.Version in assembly_valheim
         private const int WorldVersion = 26;
         private const int GenVersion = 1;
 
@@ -44,6 +44,8 @@ namespace MakeFwl
                 using (FileStream stream = File.Create(info.Path))
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
+                    // Format based on World.SaveWorldMetaData from assembly_valheim
+
                     writer.Write(0); // placeholder for data size
 
                     // Data
