@@ -20,6 +20,7 @@ namespace MakeFwl
 {
     internal class Program
     {
+        // Current version numbers can be found in Version.Version() in assembly_valheim
         private const int WorldVersion = 26;
         private const int GenVersion = 1;
 
