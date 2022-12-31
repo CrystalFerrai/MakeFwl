@@ -21,8 +21,8 @@ namespace MakeFwl
     internal class Program
     {
         // Current version numbers can be found in Version.Version in assembly_valheim
-        private const int WorldVersion = 26; // Indicates version of FWL format
-        private const int GenVersion = 1; // Indicates version of world generator
+        private const int WorldVersion = 29; // Indicates version of world format
+        private const int GenVersion = 2; // Indicates version of world generator
 
         private static Random sRandom;
 
