@@ -1,4 +1,4 @@
-﻿// Copyright 2025 Crystal Ferrai
+﻿// Copyright 2026 Crystal Ferrai
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ namespace MakeFwl
 	internal static class MetadataFile
 	{
 		// Current version numbers can be found in Version.Version in assembly_valheim
-		private const int WorldVersion = 36; // Indicates version of world format
+		private const int WorldVersion = 39; // Indicates version of world format
 		private const int GenVersion = 2; // Indicates version of world generator
 
 		private static Random sRandom;
@@ -42,7 +42,25 @@ namespace MakeFwl
 			string? outputPath = options.OutputPath;
 			if (outputPath is null)
 			{
-				outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"{options.Name}.fwl");
+				outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"{options.Name}.fwl2");
+			}
+			outputPath = Path.GetFullPath(outputPath);
+			string? outputDir = Path.GetDirectoryName(outputPath);
+			if (outputDir is null)
+			{
+				Console.Error.WriteLine($"Could not determine the directory for the output path: {outputPath}");
+				result = null;
+				return false;
+			}
+			try
+			{
+				Directory.CreateDirectory(outputDir);
+			}
+			catch (Exception ex)
+			{
+				Console.Error.WriteLine($"Could not create the output directory: {outputDir}. [{ex.GetType().FullName}] {ex.Message}");
+				result = null;
+				return false;
 			}
 
 			string? seedName = options.Seed;
@@ -72,6 +90,7 @@ namespace MakeFwl
 					writer.Write(GenVersion);
 					writer.Write(false); // False means the world DB file does not need to exist to load this world
 					modifiers.Serialize(stream);
+					writer.Write(0); // Player history count
 
 					// Size
 					stream.Seek(0, SeekOrigin.Begin);
@@ -80,7 +99,7 @@ namespace MakeFwl
 			}
 			catch (Exception ex)
 			{
-				Console.Error.WriteLine($"An error occurred while writign the file. [{ex.GetType().FullName}] {ex.Message}");
+				Console.Error.WriteLine($"An error occurred while writing the file. [{ex.GetType().FullName}] {ex.Message}");
 				result = null;
 				return false;
 			}

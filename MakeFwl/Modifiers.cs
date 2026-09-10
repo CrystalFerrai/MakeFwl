@@ -1,4 +1,4 @@
-﻿// Copyright 2025 Crystal Ferrai
+﻿// Copyright 2026 Crystal Ferrai
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -273,11 +273,13 @@ namespace MakeFwl
 								modifiers["playerdamage"] = 85;
 								modifiers["enemydamage"] = 150;
 								modifiers["enemyspeedsize"] = 110;
+								modifiers["enemyleveluprate"] = 120;
 								break;
 							case "veryhard":
 								modifiers["playerdamage"] = 70;
 								modifiers["enemydamage"] = 200;
 								modifiers["enemyspeedsize"] = 120;
+								modifiers["enemyleveluprate"] = 140;
 								break;
 						}
 						break;
