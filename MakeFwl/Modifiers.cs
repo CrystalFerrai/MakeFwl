@@ -382,7 +382,7 @@ namespace MakeFwl
 					results.Add(flag);
 				}
 
-				results.Add(string.Join(':', presets.Select(p => $"{p.Key}_{p.Value}")));
+				results.Add("preset " + string.Join(':', presets.Select(p => $"{p.Key}_{p.Value}")));
 
 				return results;
 			}
