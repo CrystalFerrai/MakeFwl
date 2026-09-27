@@ -18,7 +18,7 @@ MakeFwl is a standalone CLI application that does not come with an installer. Si
 
 ## Usage
 
-Pass in a world name on the command line, and it will output a new world save folder with a metadata file in the current directory. On Windows, run `MakeFwl.exe` followed by the arguments. On Linux, run `dotnet MakeFwl.dll` followed by the arguments. To see additional options, run the program from a command line without any parameters.
+Pass in a world name on the command line, and it will output a new world save folder with a metadata file in the current directory. On Windows, run `MakeFwl.exe` followed by the arguments. On Linux, run `dotnet MakeFwl.dll` followed by the arguments. To see additional options, run the program from a command line without any arguments.
 
 ```
   MakeFwl [world_name] [[seed]] [[-m path]] [[-o path]]
