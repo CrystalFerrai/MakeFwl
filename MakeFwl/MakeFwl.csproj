@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+  <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Platforms>x64</Platforms>
@@ -11,17 +11,17 @@
   <PropertyGroup>
     <Title>MakeFwl</Title>
     <Product>MakeFwl</Product>
-	<ProductName>MakeFwl</ProductName>
+  <ProductName>MakeFwl</ProductName>
     <Description>Creates world files for Valheim</Description>
     <Company>Crystal</Company>
     <Authors>Crystal Ferrai</Authors>
-    <Copyright>Copyright © 2025 Crystal Ferrai</Copyright>
-	<Version>3.0.1.0</Version>
-	<ProductVersion>$(Version)</ProductVersion>
+    <Copyright>Copyright © 2026 Crystal Ferrai</Copyright>
+  <Version>3.0.1.0</Version>
+  <ProductVersion>$(Version)</ProductVersion>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
-	<InformationalVersion>$(Version)</InformationalVersion>
-	<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  <InformationalVersion>$(Version)</InformationalVersion>
+  <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
 </Project>

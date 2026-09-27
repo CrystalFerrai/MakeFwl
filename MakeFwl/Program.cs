@@ -14,38 +14,38 @@
 
 namespace MakeFwl
 {
-    internal class Program
-    {
-        // Entry point
-        private static int Main(string[] args)
-        {
-            if (args.Length == 0)
-            {
-                Options.PrintUsage();
-                return OnExit(0);
-            }
+	internal class Program
+	{
+		// Entry point
+		private static int Main(string[] args)
+		{
+			if (args.Length == 0)
+			{
+				Options.PrintUsage();
+				return OnExit(0);
+			}
 
-            Options? options;
-            if (!Options.TryParse(args, out options))
-            {
-                return OnExit(1);
-            }
-            
-            if (!WorldSave.Generate(options))
-            {
-                return OnExit(1);
-            }
+			Options? options;
+			if (!Options.TryParse(args, out options))
+			{
+				return OnExit(1);
+			}
 
-            return OnExit(0);
-        }
+			if (!WorldSave.Generate(options))
+			{
+				return OnExit(1);
+			}
 
-        private static int OnExit(int code)
-        {
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                Console.ReadKey(true);
-            }
-            return code;
-        }
-    }
+			return OnExit(0);
+		}
+
+		private static int OnExit(int code)
+		{
+			if (System.Diagnostics.Debugger.IsAttached)
+			{
+				Console.ReadKey(true);
+			}
+			return code;
+		}
+	}
 }

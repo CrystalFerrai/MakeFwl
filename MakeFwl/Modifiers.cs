@@ -38,7 +38,7 @@ namespace MakeFwl
 
 		public bool? PlayerEvents { get; set; } = null;
 
-		public bool? Fire {  get; set; } = null;
+		public bool? Fire { get; set; } = null;
 
 		public bool? PassiveMobs { get; set; } = null;
 
@@ -189,7 +189,7 @@ namespace MakeFwl
 			};
 
 			HashSet<string> flags = new();
-			
+
 			switch (Preset)
 			{
 				case Modifier_Preset.Easy:
@@ -242,7 +242,7 @@ namespace MakeFwl
 			{
 				presets["resources"] = Resources.ToString().ToLowerInvariant();
 			}
-			if (Raids  != Modifier_Raids.Unset)
+			if (Raids != Modifier_Raids.Unset)
 			{
 				presets["raids"] = Raids.ToString().ToLowerInvariant();
 			}
