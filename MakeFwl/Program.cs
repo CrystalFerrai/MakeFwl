@@ -31,19 +31,10 @@ namespace MakeFwl
                 return OnExit(1);
             }
             
-            Modifiers? modifiers = null;
-            if (!Modifiers.TryLoad(options.ModifiersPath, out modifiers))
+            if (!WorldSave.Generate(options))
             {
                 return OnExit(1);
             }
-
-            CreateMetadataResult? result;
-            if (!MetadataFile.CreateFile(options, modifiers, out result))
-            {
-                return OnExit(1);
-            }
-            
-            Console.Out.WriteLine($"Created world \"{result.Name}\" with seed \"{result.Seed}\" at {result.Path}");
 
             return OnExit(0);
         }

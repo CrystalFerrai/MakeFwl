@@ -32,7 +32,7 @@ namespace MakeFwl
 		public string? Seed { get; set; }
 
 		/// <summary>
-		/// The path to where the file should be generated
+		/// The path to where the save should be generated
 		/// </summary>
 		public string? OutputPath { get; set; }
 
@@ -135,19 +135,18 @@ namespace MakeFwl
 		public static void PrintUsage()
 		{
 			Console.Out.WriteLine(
-				"Creates a Valheim world seed file. Usage:\n" +
+				"Creates a new Valheim world save. Usage:\n" +
 				"  MakeFwl [world_name] [[seed]] [[-m path]] [[-o path]]\n" +
 				"\n" +
 				"    world_name  The name of the world to generate. 5-20 characters.\n" +
 				"\n" +
 				"    seed        (optional) The random seed from which to generate the world.\n" +
-				"                1-10 characters. If ommitted, will use random value.\n" +
+				"                1-10 characters. If omitted, will use random value.\n" +
 				"\n" +
 				"    -m path     (optional) Modifiers file path. If omitted, will default settings.\n" +
 				"                See modifiers.example.txt for an example of a modifiers file.\n" +
 				"\n" +
-				"    -o path     (optional) Output file path. If omitted, will use name of world\n" +
-				"                as file name and place in current directory."
+				"    -o path     (optional) Output directory. If omitted, will use current directory."
 				);
 		}
 	}

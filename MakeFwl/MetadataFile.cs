@@ -23,10 +23,6 @@ namespace MakeFwl
 	/// </summary>
 	internal static class MetadataFile
 	{
-		// Current version numbers can be found in Version.Version in assembly_valheim
-		private const int WorldVersion = 39; // Indicates version of world format
-		private const int GenVersion = 2; // Indicates version of world generator
-
 		private static Random sRandom;
 
 		static MetadataFile()
@@ -37,40 +33,15 @@ namespace MakeFwl
 		/// <summary>
 		/// Attempts to create a metadata file using the passed in options and modifiers
 		/// </summary>
-		public static bool CreateFile(Options options, Modifiers modifiers, [NotNullWhen(true)] out CreateMetadataResult? result)
+		public static bool CreateFile(string outputPath, string worldName, string? seedName, Modifiers modifiers, [NotNullWhen(true)] out CreateMetadataResult? result)
 		{
-			string? outputPath = options.OutputPath;
-			if (outputPath is null)
-			{
-				outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"{options.Name}.fwl2");
-			}
-			outputPath = Path.GetFullPath(outputPath);
-			string? outputDir = Path.GetDirectoryName(outputPath);
-			if (outputDir is null)
-			{
-				Console.Error.WriteLine($"Could not determine the directory for the output path: {outputPath}");
-				result = null;
-				return false;
-			}
-			try
-			{
-				Directory.CreateDirectory(outputDir);
-			}
-			catch (Exception ex)
-			{
-				Console.Error.WriteLine($"Could not create the output directory: {outputDir}. [{ex.GetType().FullName}] {ex.Message}");
-				result = null;
-				return false;
-			}
-
-			string? seedName = options.Seed;
 			if (seedName is null)
 			{
 				seedName = GenerateSeedName();
 			}
 
 			int seed = seedName.GetStableHashCode();
-			long uid = options.Name.GetStableHashCode() + GenerateUID();
+			long uid = worldName.GetStableHashCode() + GenerateUID();
 
 			try
 			{
@@ -82,12 +53,12 @@ namespace MakeFwl
 					writer.Write(0); // placeholder for data size
 
 					// Data
-					writer.Write(WorldVersion);
-					writer.Write(options.Name);
+					writer.Write(Versions.WorldVersion);
+					writer.Write(worldName);
 					writer.Write(seedName);
 					writer.Write(seed);
 					writer.Write(uid);
-					writer.Write(GenVersion);
+					writer.Write(Versions.GenVersion);
 					writer.Write(false); // False means the world DB file does not need to exist to load this world
 					modifiers.Serialize(stream);
 					writer.Write(0); // Player history count
@@ -104,7 +75,7 @@ namespace MakeFwl
 				return false;
 			}
 
-			result = new(options.Name, seedName, outputPath);
+			result = new(worldName, seedName);
 			return true;
 		}
 
@@ -132,7 +103,7 @@ namespace MakeFwl
 	}
 
 	/// <summary>
-	/// A result from MEtadataFile.CreateFile
+	/// A result from MetadataFile.CreateFile
 	/// </summary>
 	internal class CreateMetadataResult
 	{
@@ -146,16 +117,10 @@ namespace MakeFwl
 		/// </summary>
 		public string Seed { get; }
 
-		/// <summary>
-		/// The path to the output metadata file
-		/// </summary>
-		public string Path { get; }
-
-		public CreateMetadataResult(string name, string seed, string path)
+		public CreateMetadataResult(string name, string seed)
 		{
 			Name = name;
 			Seed = seed;
-			Path = path;
 		}
 	}
 }
